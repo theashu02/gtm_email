@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
-import { setAuthScreen } from "../../../store/slices/userSlice";
+import { setAuthScreen } from "@/store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import mixpanel from "mixpanel-browser";
 
 // Utility functions to extract attribution data
-const getQueryParam = (param) => {
+const getQueryParam = (param: string) => {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param) || '';
 };
@@ -66,7 +66,7 @@ const Hero = () => {
 
   const user = getUserData();
 
-  const trackMixpanelEvent = (eventName, properties = {}) => {
+  const trackMixpanelEvent = (eventName: string, properties: Record<string, unknown> = {}) => {
     if (!isMixpanelInitialized || typeof mixpanel === 'undefined' || !mixpanel) {
       console.warn("Mixpanel is not available or not initialized, skipping tracking for:", eventName);
       return;

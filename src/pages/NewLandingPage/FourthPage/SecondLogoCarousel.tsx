@@ -119,18 +119,20 @@ export default function SecondLogoCarousel() {
 
   // State to control animation
   const [scrollPosition, setScrollPosition] = useState(0);
-  const containerRef = useRef(null);
-  const contentRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [contentWidth, setContentWidth] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
+  console.info(containerWidth);
 
   // Measure container and content widths
   useEffect(() => {
     if (containerRef.current && contentRef.current) {
       const updateMeasurements = () => {
-        setContainerWidth(containerRef.current.offsetWidth);
-        // This is the width of one set of logos
-        setContentWidth(contentRef.current.offsetWidth / 2);
+        if (containerRef.current && contentRef.current) {
+          setContainerWidth(containerRef.current.offsetWidth);
+          setContentWidth(contentRef.current.offsetWidth / 2);
+        }
       };
 
       updateMeasurements();
@@ -144,9 +146,9 @@ export default function SecondLogoCarousel() {
     if (!contentWidth) return;
 
     let lastTimestamp = 0;
-    let animationFrameId;
+    let animationFrameId: number;
 
-    const animate = (timestamp) => {
+    const animate = (timestamp: number) => {
       if (!lastTimestamp) lastTimestamp = timestamp;
       const elapsed = timestamp - lastTimestamp;
 

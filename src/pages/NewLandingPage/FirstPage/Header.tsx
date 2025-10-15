@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import logoimg from "../../../assets/GTMVantageLogo.png";
+import logoimg from "@/assets/GTMVantageLogo.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setAuthScreen } from "../../../store/slices/userSlice";
+import { setAuthScreen } from "@/store/slices/userSlice";
 import mixpanel from "mixpanel-browser";
+
+declare global {
+  interface Window { gtag?: (...args: unknown[]) => void }
+}
 
 // Safe Mixpanel initialization with error handling
 const initializeMixpanel = () => {
@@ -28,7 +32,7 @@ const initializeMixpanel = () => {
 const isMixpanelInitialized = initializeMixpanel();
 
 // Safe Mixpanel tracking function
-const trackEvent = (eventName, properties = {}) => {
+const trackEvent = (eventName: string, properties: Record<string, unknown> = {}) => {
   try {
     if (isMixpanelInitialized && mixpanel && typeof mixpanel.track === 'function') {
       mixpanel.track(eventName, properties);
@@ -75,10 +79,10 @@ const Header = () => {
     };
   }, []);
 
-  const gtag_report_conversion = (url) => {
+  const gtag_report_conversion = (url: string | undefined) => {
     const callback = function () {
       if (typeof url !== 'undefined') {
-        window.location = url;
+        window.location.href = url;
       }
     };
     
@@ -102,7 +106,7 @@ const Header = () => {
       timestamp: new Date().toISOString(),
     });
     
-    gtag_report_conversion();
+    gtag_report_conversion(undefined);
     
     if (user) {
       navigate("/getStarted");

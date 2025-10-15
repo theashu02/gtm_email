@@ -53,14 +53,6 @@ const Footer = () => {
                 </h3>
               </Link>
             </div>
-
-            {/* <div>
-            <Link to="/help-support">
-              <h3 className="mb-4 font-normal text-[17px] leading-[100%] tracking-[0%] hover:text-gray-300 cursor-pointer">
-                Help & Support
-              </h3>
-            </Link>
-          </div> */}
           </div>
         </div>
 

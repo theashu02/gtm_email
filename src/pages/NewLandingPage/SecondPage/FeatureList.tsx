@@ -1,18 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleFeature } from '../../../store/slices/LandingPage/featureSlice';
-import FeatureItem from './FeatureItem';
-import first from '../../../assets/productinfo/1.png';
-import second from '../../../assets/productinfo/2.png';
-import third from '../../../assets/productinfo/3.png';
-import four from '../../../assets/productinfo/4.png';
-import five from '../../../assets/productinfo/5.png';
-import six from '../../../assets/productinfo/6.png';
-import seven from '../../../assets/productinfo/7.png';
-// import mixpanel from "mixpanel-browser";
-import { useEffect, useRef } from 'react';
-
-
-// mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, { debug: true });
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFeature } from "../../../store/slices/LandingPage/featureSlice";
+import FeatureItem from "./FeatureItem";
+import first from "../../../assets/productinfo/1.png";
+import second from "../../../assets/productinfo/2.png";
+import third from "../../../assets/productinfo/3.png";
+import four from "../../../assets/productinfo/4.png";
+import five from "../../../assets/productinfo/5.png";
+import six from "../../../assets/productinfo/6.png";
+import seven from "../../../assets/productinfo/7.png";
+import { useEffect, useRef } from "react";
+import type { RootState } from "@/store/store";
 
 const features = [
   {
@@ -84,21 +81,16 @@ const features = [
 
 function FeatureList() {
   const dispatch = useDispatch();
-  const openId = useSelector((state) => state.feature.openId);
-  
-    const storedUser = localStorage.getItem("user-xcalibure");
-      const startTimeRef = useRef(Date.now());
-  const user = JSON.parse(storedUser);
+  const openId = useSelector((state: RootState) => state.feature.openId);
+
+  const storedUser = localStorage.getItem("user-xcalibure");
+  const startTimeRef = useRef(Date.now());
+  const user = storedUser ? JSON.parse(storedUser) : null;
   useEffect(() => {
     const handleUnload = () => {
       const timeSpentMs = Date.now() - startTimeRef.current;
       const timeSpentSeconds = Math.round(timeSpentMs / 1000);
-
-      // mixpanel.track("Product Detail Page", {
-      //   isLoggedIn: !!user,
-      //   timeSpentSeconds,
-      //   timestamp: new Date().toISOString(),
-      // });
+      console.log(timeSpentSeconds);
     };
 
     // Listen for page unload or component unmount
@@ -110,7 +102,6 @@ function FeatureList() {
       window.removeEventListener("beforeunload", handleUnload);
     };
   }, [user]);
-
 
   return (
     <div className="space-y-8">

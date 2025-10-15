@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import FeatureList from './FeatureList';
 import ProductImage from './ProductImage';
 import SectionHeading from './SectionHeading';
 import first from '../../../assets/productinfo/1.png';
 import mixpanel from "mixpanel-browser";
+import type { RootState } from '@/store/store';
 
 // Safe Mixpanel initialization
 const initializeMixpanel = () => {
@@ -27,9 +28,7 @@ const initializeMixpanel = () => {
 const isMixpanelInitialized = initializeMixpanel();
 
 function ProductDetailsSection() {
-  const selectedImage = useSelector(
-    (state) => state.feature.selectedImage || first
-  );
+  const selectedImage = useSelector((state: RootState) => state.feature.selectedImage || first);
 
   // Safe user data parsing
   const getUserData = () => {
@@ -48,7 +47,7 @@ function ProductDetailsSection() {
   const startTimeRef = useRef(Date.now());
 
   // Safe Mixpanel tracking function
-  const trackMixpanelEvent = (eventName, properties = {}) => {
+  const trackMixpanelEvent = (eventName: string, properties: Record<string, unknown> = {}) => {
     // Check if Mixpanel is available and initialized
     if (!isMixpanelInitialized || typeof mixpanel === 'undefined' || !mixpanel) {
       console.warn("Mixpanel is not available or not initialized, skipping tracking for:", eventName);

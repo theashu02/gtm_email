@@ -1,6 +1,11 @@
-import PropTypes from "prop-types";
+type Member = {
+  name: string;
+  image: string;
+  country: { code: string; name: string };
+  companies: string[];
+};
 
-const ConsultantCard = ({ member }) => {
+const ConsultantCard = ({ member }: { member: Member }) => {
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] h-full">
       <div className="aspect-square overflow-hidden">
@@ -43,19 +48,6 @@ const ConsultantCard = ({ member }) => {
       </div>
     </div>
   );
-};
-
-ConsultantCard.propTypes = {
-  member: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    country: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      code: PropTypes.string.isRequired,
-    }).isRequired,
-    companies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }).isRequired,
 };
 
 export default ConsultantCard;

@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import logo from "../assets/images/logoimg.jpeg";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const LoginSchema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -49,7 +50,10 @@ export function LoginPage() {
       </div>
 
       {/* Right half: form */}
-      <div className="flex items-center justify-center p-6 sm:p-10 bg-red-300">
+      <div className="flex items-center justify-center p-6 sm:p-10">
+        <div className="absolute right-5 top-5">
+          <ThemeToggle />
+        </div>
         <div className="w-full max-w-sm rounded-xl border bg-card/70 backdrop-blur supports-[backdrop-filter]:bg-card/60 p-6 sm:p-8 shadow-sm">
           <h1 className="text-2xl font-semibold tracking-tight">Sign in</h1>
           <p className="mt-1 text-sm text-muted-foreground">

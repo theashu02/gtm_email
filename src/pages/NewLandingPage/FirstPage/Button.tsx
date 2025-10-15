@@ -1,11 +1,17 @@
-import PropTypes from "prop-types";
+type ButtonProps = {
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+  size?: "sm" | "md" | "lg";
+  variant?: "primary" | "secondary" | "outline";
+};
 
 const Button = ({
   children,
   onClick,
   className = "",
   size = "md",
-}) => {
+}: ButtonProps) => {
   const baseClasses =
     "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300";
     
@@ -26,14 +32,6 @@ const Button = ({
       {children}
     </button>
   );
-};
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
-  className: PropTypes.string,
-  variant: PropTypes.oneOf(["primary", "secondary", "outline"]),
-  size: PropTypes.oneOf(["sm", "md", "lg"]),
 };
 
 export default Button;

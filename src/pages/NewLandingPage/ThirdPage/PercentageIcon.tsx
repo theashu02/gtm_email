@@ -1,19 +1,14 @@
+type PercentageIconProps = {
+  percentage: number | string;
+  className?: string;
+};
 
-
-import PropTypes from "prop-types";
-
-const PercentageIcon = ({ percentage, className = "" }) => {
+const PercentageIcon = ({ percentage, className = "" }: PercentageIconProps) => {
   return (
     <div className={`flex items-center justify-center ${className}`}>
       <span className="text-4xl font-bold">{percentage}</span>
     </div>
   );
-
 }
-
-PercentageIcon.propTypes = {
-  percentage: PropTypes.number.isRequired,
-  className: PropTypes.string,
-};
 
 export default PercentageIcon;

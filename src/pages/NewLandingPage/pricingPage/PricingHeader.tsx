@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import mixpanel from "mixpanel-browser";
 
 // Safe Mixpanel initialization
@@ -39,7 +39,7 @@ const PricingHeader = () => {
   const startTimeRef = useRef(Date.now());
 
   // Safe Mixpanel tracking function
-  const trackMixpanelEvent = (eventName, properties = {}) => {
+  const trackMixpanelEvent = (eventName: string, properties: Record<string, unknown> = {}) => {
     // Check if Mixpanel is available and initialized
     if (!isMixpanelInitialized || typeof mixpanel === 'undefined' || !mixpanel) {
       console.warn("Mixpanel is not available or not initialized, skipping tracking for:", eventName);

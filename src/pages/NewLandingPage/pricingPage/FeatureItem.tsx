@@ -1,7 +1,9 @@
+type FeatureItemProps = {
+  name: string;
+  value: string | number;
+};
 
-import PropTypes from 'prop-types';
-
-const FeatureItem = ({ name, value }) => {
+const FeatureItem = ({ name, value }: FeatureItemProps) => {
   // console.log("FeatureItem rendered with name:", name, "and value:", value);
   const isConsultingHours = name === "Free Consulting Hours";
   return (
@@ -14,11 +16,6 @@ const FeatureItem = ({ name, value }) => {
       </span>
     </div>
   );
-};
-
-FeatureItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
 };
 
 export default FeatureItem;

@@ -1,28 +1,8 @@
-// import ImageLogo from "../../../assets/AppImage.png"
+type ProductImageProps = {
+  image: string;
+};
 
-// function ProductImage() {
-//   return (
-//     <div
-//       className="rounded-xl overflow-hidden p-4 md:py-[90px] flex items-center justify-center"
-//       style={{
-//         background: "linear-gradient(180deg, #09D2F8 0%, #5735BA 87.5%)",
-//       }}
-//     >
-//       <div className="w-full max-w-xl bg-transparent">
-//         <img
-//           src={ImageLogo}
-//           alt="Competitive Landscape Dashboard"
-//           className="w-full rounded"
-//         />
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ProductImage;
-import PropTypes from "prop-types";
-
-function ProductImage({ image }) {
+function ProductImage({ image }: ProductImageProps) {
   return (
     <div
       className="rounded-2xl overflow-hidden p-4 md:py-[60px] flex items-center justify-center"
@@ -40,9 +20,5 @@ function ProductImage({ image }) {
     </div>
   );
 }
-
-ProductImage.propTypes = {
-  image: PropTypes.string.isRequired,
-};
 
 export default ProductImage;

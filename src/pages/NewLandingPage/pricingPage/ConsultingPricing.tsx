@@ -22,7 +22,7 @@ const initializeMixpanel = () => {
 
 const isMixpanelInitialized = initializeMixpanel();
 
-const trackEvent = (eventName, properties = {}) => {
+const trackEvent = (eventName: string, properties: Record<string, unknown> = {}) => {
   try {
     if (isMixpanelInitialized && mixpanel && typeof mixpanel.track === "function") {
       mixpanel.track(eventName, properties);

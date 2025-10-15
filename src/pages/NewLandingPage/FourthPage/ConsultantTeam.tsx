@@ -1,28 +1,26 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ConsultantCard from "./ConsultantCard";
-import first from "../../../assets/peoples/1.png";
-import second from "../../../assets/peoples/2.png";
-import third from "../../../assets/peoples/3.png";
-import four from "../../../assets/peoples/4.png";
-import five from "../../../assets/peoples/5.png";
-import six from "../../../assets/peoples/6.png";
-import seven from "../../../assets/peoples/7.png";
-import eight from "../../../assets/peoples/8.png";
-import NVIDIA from "../../../assets/company/14.png";
-import Amazon from "../../../assets/company/3.png";
-import Nokia from "../../../assets/company/9.png";
-import Conviva from "../../../assets/company/5.png";
-import SAP from "../../../assets/company/8.png";
-import Microsoft from "../../../assets/company/7.png";
-import Uipath from "../../../assets/company/12.png";
-import Canon from "../../../assets/company/11.png";
-import Huwaei from "../../../assets/company/6.png";
-import Hitachi from "../../../assets/company/1.png";
-import Motorola from "../../../assets/company/4.png";
-import RelevenceLab from "../../../assets/company/2.png";
-import GE from "../../../assets/company/10.png";
-import Google from "../../../assets/company/13.png";
-import FIN from "../../../assets/company/15.png";
+import first from "@/assets/peoples/1.png";
+import second from "@/assets/peoples/2.png";
+import third from "@/assets/peoples/3.png";
+import four from "@/assets/peoples/4.png";
+import five from "@/assets/peoples/5.png";
+import six from "@/assets/peoples/6.png";
+import seven from "@/assets/peoples/7.png";
+import eight from "@/assets/peoples/8.png"
+import NVIDIA from "@/assets/company/14.png";
+import Amazon from "@/assets/company/3.png";
+import Nokia from "@/assets/company/9.png";
+import Conviva from "@/assets/company/5.png";
+import SAP from "@/assets/company/8.png";
+import Microsoft from "@/assets/company/7.png";
+import Uipath from "@/assets/company/12.png";
+import Canon from "@/assets/company/11.png";
+import Huwaei from "@/assets/company/6.png";
+import Motorola from "@/assets/company/4.png";
+import GE from "@/assets/company/10.png";
+import Google from "@/assets/company/13.png";
+import FIN from "@/assets/company/15.png";
 import mixpanel from "mixpanel-browser";
 
 // Safe Mixpanel initialization
@@ -170,7 +168,7 @@ const ConsultantTeam = () => {
   const startTimeRef = useRef(Date.now());
 
   // Safe Mixpanel tracking function
-  const trackMixpanelEvent = (eventName, properties = {}) => {
+  const trackMixpanelEvent = (eventName: string, properties: Record<string, unknown> = {}) => {
     // Check if Mixpanel is available and initialized
     if (!isMixpanelInitialized || typeof mixpanel === 'undefined' || !mixpanel) {
       console.warn("Mixpanel is not available or not initialized, skipping tracking for:", eventName);

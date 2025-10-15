@@ -1,6 +1,12 @@
-import PropTypes from "prop-types";
+import React from "react";
 
-const FeatureCard = ({ title, icon, className = "" }) => {
+type FeatureCards = {
+  title: string;
+  icon: React.ReactNode;
+  className: string;
+}
+
+const FeatureCard = ({ title, icon, className = "" }: FeatureCards) => {
   return (
     <div
       className={`overflow-hidden rounded-3xl border transition-all hover:shadow-md shadow-lg w-[100%] h-[350px] flex flex-col ${className}`}
@@ -33,12 +39,5 @@ const FeatureCard = ({ title, icon, className = "" }) => {
     </div>
   );
 }
-
-
-FeatureCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.elementType.isRequired,
-  className: PropTypes.string,
-};
 
 export default FeatureCard;

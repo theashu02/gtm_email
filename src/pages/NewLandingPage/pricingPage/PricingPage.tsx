@@ -4,7 +4,7 @@ import PricingHeader from "./PricingHeader";
 import ConsultingPricing from "./ConsultingPricing";
 import Button from "../FirstPage/Button";
 import { useDispatch } from "react-redux";
-import { setAuthScreen } from "../../../store/slices/userSlice";
+import { setAuthScreen } from "@/store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import mixpanel from "mixpanel-browser";
 
@@ -271,7 +271,7 @@ const PricingPage = () => {
   const user = getUserData();
 
   // Safe Mixpanel tracking function
-  const trackMixpanelEvent = (eventName, properties = {}) => {
+  const trackMixpanelEvent = (eventName: string, properties: Record<string, unknown> = {}) => {
     if (!isMixpanelInitialized || typeof mixpanel === 'undefined' || !mixpanel) {
       console.warn("Mixpanel is not available or not initialized, skipping tracking for:", eventName);
       return;
@@ -315,7 +315,8 @@ const PricingPage = () => {
   };
 
   // Get plans for current currency and billing period
-  const pricingPlans = pricingPlansData[currency][billingPeriod];
+  // const pricingPlans = pricingPlansData[currency][billingPeriod];
+  const pricingPlans = pricingPlansData[currency as "USD" | "INR"][billingPeriod as "yearly" | "monthly"];
 
   return (
     <div className="w-[95%] mx-auto py-3">
@@ -367,6 +368,7 @@ const PricingPage = () => {
             plan={plan}
             billingPeriod={billingPeriod}
             currency={plan.price !== "ON REQUEST" ? (currency === 'INR' ? '₹' : '$') : ''}
+            scrollToRegistration={() => {}}
           />
         ))}
       </div>

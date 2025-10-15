@@ -1,9 +1,21 @@
 import BuyNowButton from "./BuyNowButton";
 import FeatureItem from "./FeatureItem";
-import PropTypes from "prop-types";
-import RegisterForm from "../../../components/Home/RegisterForm";
 
-const PricingCard = ({ plan, currency, scrollToRegistration,billingPeriod }) => {
+type Feature = { name: string; value: string | number };
+type Plan = {
+  title: string;
+  price: string | number;
+  features: Feature[];
+};
+
+type PricingCardProps = {
+  plan: Plan;
+  currency: string;
+  scrollToRegistration: () => void;
+  billingPeriod: string;
+};
+
+const PricingCard = ({ plan, currency, billingPeriod }: PricingCardProps) => {
   const handleClick = () => {
   window.scrollBy({
     top: window.innerHeight * 2, // 200vh
@@ -65,22 +77,6 @@ const PricingCard = ({ plan, currency, scrollToRegistration,billingPeriod }) => 
       </div>
     </div>
   );
-};
-
-PricingCard.propTypes = {
-  plan: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    period: PropTypes.string,
-    features: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
-  currency: PropTypes.string.isRequired,
-  scrollToRegistration: PropTypes.object, // passed ref
 };
 
 export default PricingCard;

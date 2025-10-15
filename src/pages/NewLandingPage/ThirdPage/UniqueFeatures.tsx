@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import FeatureCard from "./FeatureCard";
 import first from "../../../assets/icons/1.png";
 import second from "../../../assets/icons/2.png";
@@ -8,7 +8,6 @@ import fifth from "../../../assets/icons/5.png";
 import six from "../../../assets/icons/6.png";
 import mixpanel from "mixpanel-browser";
 
-// Safe Mixpanel initialization
 const initializeMixpanel = () => {
   try {
     if (import.meta.env.VITE_MIXPANEL_TOKEN && typeof mixpanel !== 'undefined') {
@@ -25,7 +24,6 @@ const initializeMixpanel = () => {
   }
 };
 
-// Initialize Mixpanel
 const isMixpanelInitialized = initializeMixpanel();
 
 const UniqueFeatures = () => {
@@ -73,7 +71,7 @@ const UniqueFeatures = () => {
   const startTimeRef = useRef(Date.now());
 
   // Safe Mixpanel tracking function
-  const trackMixpanelEvent = (eventName, properties = {}) => {
+  const trackMixpanelEvent = (eventName: string, properties: Record<string, unknown> = {}) => {
     // Check if Mixpanel is available and initialized
     if (!isMixpanelInitialized || typeof mixpanel === 'undefined' || !mixpanel) {
       console.warn("Mixpanel is not available or not initialized, skipping tracking for:", eventName);
@@ -141,6 +139,7 @@ const UniqueFeatures = () => {
               key={index}
               title={feature.title}
               icon={feature.icon}
+              className=""
             />
           ))}
         </div>

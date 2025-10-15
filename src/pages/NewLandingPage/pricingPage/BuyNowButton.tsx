@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setAuthScreen } from "../../../store/slices/userSlice";
+import { setAuthScreen } from "@/store/slices/userSlice";
+
 const BuyNowButton = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
